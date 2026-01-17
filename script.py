@@ -3,6 +3,7 @@
 import requests
 import hmac
 import hashlib
+import json
 from datetime import datetime, timezone
 from dotenv import load_dotenv
 from os import getenv
@@ -27,11 +28,12 @@ secret = getenv('SECRET')
 if not secret:
     raise ValueError("Secret not found")
 
-print("Secret loaded successfully: ", secret)
+print("Secret loaded successfully")
+
 
 digest = hmac.new(
     key=bytes(secret, "utf-8"),
-    msg=bytes(str(payload), "utf-8"),
+    msg=json.dumps(payload).encode('utf-8'),
     digestmod=hashlib.sha256
 ).hexdigest()
 
