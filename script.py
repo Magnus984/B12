@@ -24,10 +24,8 @@ payload = {
     "timestamp": timestamp,
 }
 
-# Create compact JSON with sorted keys
 payload_json = json.dumps(payload, separators=(',', ':'))
 
-print("payload: ",payload_json )
 secret = getenv("SECRET")
 if not secret:
     raise ValueError("Secret not found")
@@ -39,11 +37,11 @@ digest = hmac.new(
     digestmod=hashlib.sha256
 ).hexdigest()
 
-print("digest: ", digest)
 
 headers = {
-    "X-Signature-256": f"sha256{digest}"
+    "X-Signature-256": f"sha256={digest}"
 }
+
 
 response = requests.post(
     url="https://b12.io/apply/submission",
