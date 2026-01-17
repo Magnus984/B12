@@ -1,6 +1,5 @@
 #!/bin/python3.13
 
-
 import requests
 import hmac
 import hashlib
