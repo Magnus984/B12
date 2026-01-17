@@ -27,7 +27,7 @@ secret = getenv('SECRET')
 if not secret:
     raise ValueError("Secret not found")
 
-print("Secret loaded successfully")
+print("Secret loaded successfully: ", secret)
 
 digest = hmac.new(
     key=bytes(secret, "utf-8"),
