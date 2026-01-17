@@ -24,7 +24,7 @@ payload = {
     "timestamp": timestamp,
 }
 
-payload_json = json.dumps(payload, separators=(',', ':'))
+payload_json = json.dumps(payload, sort_keys=True, separators=(',', ':'))
 print(payload_json)
 
 secret = getenv("SECRET")
