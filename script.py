@@ -39,6 +39,7 @@ digest = hmac.new(
     digestmod=hashlib.sha256
 ).hexdigest()
 
+print("digest: ", digest)
 
 headers = {
     "X-Signature-256": f"sha256{digest}"

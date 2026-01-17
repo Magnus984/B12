@@ -35,5 +35,5 @@ jobs:
         run: |
           python3.13 script.py
         env:
-          SECRET: ${{ secrets.SECRET }}
+          SECRET: hello-there-from-b12
           ACTION_RUN_LINK: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
