@@ -27,6 +27,7 @@ payload = {
 # Create compact JSON with sorted keys
 payload_json = json.dumps(payload, separators=(',', ':'))
 
+print("payload: ",payload_json )
 secret = getenv("SECRET")
 if not secret:
     raise ValueError("Secret not found")
@@ -46,7 +47,7 @@ headers = {
 response = requests.post(
     url="https://b12.io/apply/submission",
     headers=headers,
-    json=payload
+    json=payload_json
 
 )
 
