@@ -16,13 +16,12 @@ timestamp = timestamp.replace("+00:00", "Z")
 
 
 payload = {
-    "timestamp": timestamp,
-    "name": "Magnus Tetteh",
-    "email": "tettehmagnus35@gmail.com",
-    "resume_link": "https://drive.google.com/file/d/1frq0j4KrX6jKUZJcntrsUCBPn_FhwUGi/view?usp=sharing",
-    "repository_link": "https://github.com/Magnus984/B12",
-    # "action_run_link":
-    "linkedin_profile": "www.linkedin.com/in/magnus-tetteh-b1b208213"
+    "email":"tettehmagnus35@gmail.com",
+    "name":"Magnus Tetteh",
+    "linkedin_profile":"www.linkedin.com/in/magnus-tetteh-b1b208213",
+    "repository_link":"https://github.com/Magnus984/B12",
+    "resume_link":"https://drive.google.com/file/d/1frq0j4KrX6jKUZJcntrsUCBPn_FhwUGi/view?usp=sharing",
+    "timestamp":timestamp,   
 }
 
 digest = hmac.new(

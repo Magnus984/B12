@@ -34,3 +34,5 @@ jobs:
       - name: Execute script
         run: |
           python3.13 script.py
+        env:
+          SECRET: ${{ secrets.SECRET }}
