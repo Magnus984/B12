@@ -16,6 +16,7 @@ timestamp = timestamp.replace("+00:00", "Z")
 
 
 payload = {
+    "action_run_link":"https://github.com/Magnus984/B12/actions/runs/21092765221",
     "email":"tettehmagnus35@gmail.com",
     "name":"Magnus Tetteh",
     "linkedin_profile":"www.linkedin.com/in/magnus-tetteh-b1b208213",
