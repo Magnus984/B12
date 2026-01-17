@@ -41,7 +41,7 @@ digest = hmac.new(
 headers = {
     "X-Signature-256": f"sha256={digest}"
 }
-
+print("header ", headers)
 
 response = requests.post(
     url="https://b12.io/apply/submission",
