@@ -23,8 +23,14 @@ payload = {
     "timestamp":timestamp,   
 }
 
+secret = getenv('SECRET')
+if not secret:
+    raise ValueError("Secret not found")
+
+print("Secret loaded successfully")
+
 digest = hmac.new(
-    key=bytes(getenv("SECRET"), "utf-8"),
+    key=bytes(secret, "utf-8"),
     msg=bytes(str(payload), "utf-8"),
     digestmod=hashlib.sha256
 ).hexdigest()
