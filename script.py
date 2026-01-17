@@ -25,6 +25,7 @@ payload = {
 }
 
 payload_json = json.dumps(payload, separators=(',', ':'))
+print(payload_json)
 
 secret = getenv("SECRET")
 if not secret:
