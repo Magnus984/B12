@@ -16,25 +16,25 @@ timestamp = timestamp.replace("+00:00", "Z")
 
 
 payload = {
-    "action_run_link":"https://github.com/Magnus984/B12/actions/runs/21092765221",
-    "email":"tettehmagnus35@gmail.com",
-    "name":"Magnus Tetteh",
-    "linkedin_profile":"www.linkedin.com/in/magnus-tetteh-b1b208213",
-    "repository_link":"https://github.com/Magnus984/B12",
-    "resume_link":"https://drive.google.com/file/d/1frq0j4KrX6jKUZJcntrsUCBPn_FhwUGi/view?usp=sharing",
-    "timestamp":timestamp,   
+    "action_run_link": getenv("ACTION_RUN_LINK"),
+    "email": "tettehmagnus35@gmail.com",
+    "name": "Magnus Tetteh",
+    "repository_link": "https://github.com/Magnus984/B12",
+    "resume_link": "https://drive.google.com/file/d/1frq0j4KrX6jKUZJcntrsUCBPn_FhwUGi/view?usp=sharing",
+    "timestamp": timestamp,
 }
 
-secret = getenv('SECRET')
+# Create compact JSON with sorted keys
+payload_json = json.dumps(payload, separators=(',', ':'))
+
+secret = getenv("SECRET")
 if not secret:
     raise ValueError("Secret not found")
-
 print("Secret loaded successfully")
-
 
 digest = hmac.new(
     key=bytes(secret, "utf-8"),
-    msg=json.dumps(payload).encode('utf-8'),
+    msg=payload_json.encode('utf-8'),
     digestmod=hashlib.sha256
 ).hexdigest()
 
