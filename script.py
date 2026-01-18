@@ -40,7 +40,7 @@ digest = hmac.new(
 
 
 headers = {
-    "x-signature-256": f"sha256={digest}"
+    "X-Signature-256": f"sha256={digest}"
 }
 print("header ", headers)
 
