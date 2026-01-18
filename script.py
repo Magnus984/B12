@@ -1,9 +1,9 @@
 #!/bin/python3.13
 
-
 import requests
 import hmac
 import hashlib
+import json
 from datetime import datetime, timezone
 from dotenv import load_dotenv
 from os import getenv
@@ -16,29 +16,38 @@ timestamp = timestamp.replace("+00:00", "Z")
 
 
 payload = {
-    "email":"tettehmagnus35@gmail.com",
-    "name":"Magnus Tetteh",
-    "linkedin_profile":"www.linkedin.com/in/magnus-tetteh-b1b208213",
-    "repository_link":"https://github.com/Magnus984/B12",
-    "resume_link":"https://drive.google.com/file/d/1frq0j4KrX6jKUZJcntrsUCBPn_FhwUGi/view?usp=sharing",
-    "timestamp":timestamp,   
+    "action_run_link": getenv("ACTION_RUN_LINK"),
+    "email": "tettehmagnus35@gmail.com",
+    "name": "Magnus Tetteh",
+    "repository_link": "https://github.com/Magnus984/B12",
+    "resume_link": "https://drive.google.com/file/d/1frq0j4KrX6jKUZJcntrsUCBPn_FhwUGi/view?usp=sharing",
+    "timestamp": timestamp,
 }
 
+payload_json = json.dumps(payload, sort_keys=True, separators=(',', ':'))
+print(payload_json)
+
+secret = getenv("SECRET")
+if not secret:
+    raise ValueError("Secret not found")
+print("Secret loaded successfully")
+
 digest = hmac.new(
-    key=bytes(getenv("SECRET"), "utf-8"),
-    msg=bytes(str(payload), "utf-8"),
+    key=bytes(secret, "utf-8"),
+    msg=payload_json.encode('utf-8'),
     digestmod=hashlib.sha256
 ).hexdigest()
 
 
 headers = {
-    "X-Signature-256": f"sha256{digest}"
+    "X-Signature-256": f"sha256={digest}"
 }
+print("header ", headers)
 
 response = requests.post(
     url="https://b12.io/apply/submission",
     headers=headers,
-    json=payload
+    json=payload_json
 
 )
 
